@@ -15,7 +15,9 @@ export default function Header() {
                         <Nav.Link as={Link} to="/FashionInformation">
                             패션정보
                         </Nav.Link>
-                        <Nav.Link href="#">짭신사</Nav.Link>
+                        <Nav.Link as={Link} to="/Market">
+                            짭신사
+                        </Nav.Link>
                         <Nav.Link as={Link} to="/Gongji">
                             공지사항
                         </Nav.Link>

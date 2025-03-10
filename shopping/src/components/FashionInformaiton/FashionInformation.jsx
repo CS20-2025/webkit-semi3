@@ -1,6 +1,5 @@
 // - 사용자들이 가성비, 최저가, 최고품질 등 자신의 인생템을 업로드하고 공유
 import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
-import { goods } from '../../data-Fashion/FashionData';
 import { useEffect, useState } from 'react';
 import { IoSearch } from 'react-icons/io5';
 import { FaHeart, FaComment } from 'react-icons/fa';
