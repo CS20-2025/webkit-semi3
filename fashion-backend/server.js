@@ -23,7 +23,7 @@ db.connect((err) => {
     console.log('✅ MySQL 연결 완료');
 });
 
-// 📌 [1] 모든 게시글 조회 (READ)
+// 모든 게시글 조회 (READ)
 app.get('/api/posts', (req, res) => {
     const sql = 'SELECT * FROM posts';
     db.query(sql, (err, result) => {
@@ -32,7 +32,7 @@ app.get('/api/posts', (req, res) => {
     });
 });
 
-// 📌 [2] 새 게시글 추가 (CREATE)
+// 새 게시글 추가 (CREATE)
 app.post('/api/posts', (req, res) => {
     const { name, desc, src, author, date } = req.body;
     const sql = 'INSERT INTO posts (name, `desc`, src, author, date) VALUES (?, ?, ?, ?, ?)';
@@ -42,7 +42,7 @@ app.post('/api/posts', (req, res) => {
     });
 });
 
-// 📌 [3] 특정 게시글 수정 (UPDATE)
+// 특정 게시글 수정 (UPDATE)
 app.put('/api/posts/:id', (req, res) => {
     const { name, desc, src, date } = req.body;
     const sql = 'UPDATE posts SET name=?, `desc`=?, src=?, date=?, isEdited=true WHERE id=?';
@@ -52,12 +52,39 @@ app.put('/api/posts/:id', (req, res) => {
     });
 });
 
-// 📌 [4] 특정 게시글 삭제 (DELETE)
+// 특정 게시글 삭제 (DELETE)
 app.delete('/api/posts/:id', (req, res) => {
     const sql = 'DELETE FROM posts WHERE id=?';
     db.query(sql, [req.params.id], (err, result) => {
         if (err) return res.status(500).json(err);
         res.json({ message: '게시글 삭제 완료' });
+    });
+});
+
+// 상품 목록 API (모든 상품 정보 가져오기)
+app.get('/api/products', (req, res) => {
+    db.query('SELECT id, name, price, image_url FROM products', (err, results) => {
+        if (err) {
+            console.error('상품 목록을 가져오는 데 실패:', err);
+            res.status(500).json({ error: '상품 목록을 불러올 수 없습니다.' });
+            return;
+        }
+        res.json(results); // 상품 목록을 응답
+    });
+});
+// 상품 상세 정보 API
+app.get('/api/products/:id', (req, res) => {
+    const productId = req.params.id;
+    db.query('SELECT * FROM products WHERE id = ?', [productId], (err, results) => {
+        if (err) {
+            console.error('상품 상세 정보를 불러오는 데 실패:', err);
+            res.status(500).json({ error: '상품 상세 정보를 불러올 수 없습니다.' });
+            return;
+        }
+        if (results.length === 0) {
+            return res.status(404).json({ error: '상품을 찾을 수 없습니다.' });
+        }
+        res.json(results[0]); // 해당 상품의 상세 정보를 응답
     });
 });
 
