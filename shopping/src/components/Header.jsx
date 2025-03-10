@@ -7,7 +7,7 @@ export default function Header() {
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
                 <Navbar.Brand as={Link} to="/Home">
-                    CS20 프로젝트
+                    패사모
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -16,7 +16,7 @@ export default function Header() {
                             패션정보
                         </Nav.Link>
                         <Nav.Link as={Link} to="/Market">
-                            짭신사
+                            플리마켓
                         </Nav.Link>
                         <Nav.Link as={Link} to="/Gongji">
                             공지사항
