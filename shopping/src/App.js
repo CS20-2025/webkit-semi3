@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 // import './App.css';
-import './components/FashionInformaiton/Fashion.css';
-import FashionInformation from './components/FashionInformaiton/FashionInformation';
+import './components/FashionInformation/Fashion.css';
+import FashionInformation from './components/FashionInformation/FashionInformation';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';

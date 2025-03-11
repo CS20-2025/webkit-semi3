@@ -26,6 +26,15 @@ export default function Header() {
                             <NavDropdown.Item href="#">쇼핑몰 추천 코디</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
+                    {/* 로그인 및 회원가입 버튼 추가 */}
+                    <Nav className="ms-auto">
+                        <Nav.Link as={Link} to="/login" className="btn btn-primary me-2">
+                            로그인
+                        </Nav.Link>
+                        <Nav.Link as={Link} to="/register" className="btn btn-success">
+                            회원가입
+                        </Nav.Link>
+                    </Nav>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
