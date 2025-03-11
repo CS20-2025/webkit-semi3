@@ -16,7 +16,7 @@ export default function Header() {
                             패션정보
                         </Nav.Link>
                         <Nav.Link as={Link} to="/Market">
-                            짭신사
+                            플리마켓
                         </Nav.Link>
                         <Nav.Link as={Link} to="/Gongji">
                             공지사항
