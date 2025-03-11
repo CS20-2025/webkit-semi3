@@ -19,6 +19,10 @@ import Home from './components/Home';
 // 공지사항 컴포넌트
 import GongJi from './components/Gongji/GongJi';
 
+// 로그인, 회원가입
+import Register from './components/user/Register';
+import Login from './components/user/Login';
+
 function App() {
     return (
         <CartProvider>
@@ -45,6 +49,10 @@ function App() {
                                     <Route path="/market" element={<ProductList />} />
                                     <Route path="/cart" element={<Cart />} />
                                     <Route path="/checkout" element={<Checkout />} />
+
+                                    {/* 로그인 회원가입 */}
+                                    <Route path="/Login" element={<Login />} />
+                                    <Route path="/register" element={<Register />} />
                                 </Routes>
                             </Col>
                         </Row>
