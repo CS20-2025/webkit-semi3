@@ -16,7 +16,7 @@ export default function Header() {
                             패션정보
                         </Nav.Link>
                         <Nav.Link as={Link} to="/Market">
-                            짭신사
+                            플리마켓
                         </Nav.Link>
                         <Nav.Link as={Link} to="/Gongji">
                             공지사항
@@ -30,10 +30,10 @@ export default function Header() {
                     </Nav>
                     {/* 로그인 및 회원가입 버튼 추가 */}
                     <Nav className="ms-auto">
-                        <Nav.Link as={Link} to="/login" className="btn btn-primary me-2">
+                        <Nav.Link as={Link} to="/Login" className="btn btn-primary me-2">
                             로그인
                         </Nav.Link>
-                        <Nav.Link as={Link} to="/register" className="btn btn-success">
+                        <Nav.Link as={Link} to="/Register" className="btn btn-success">
                             회원가입
                         </Nav.Link>
                     </Nav>

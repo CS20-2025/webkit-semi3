@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 app.use(express.json()); // JSON 요청 처리
@@ -85,6 +87,43 @@ app.get('/api/products/:id', (req, res) => {
             return res.status(404).json({ error: '상품을 찾을 수 없습니다.' });
         }
         res.json(results[0]); // 해당 상품의 상세 정보를 응답
+    });
+});
+
+// 회원가입 (Register)
+app.post('/api/register', async (req, res) => {
+    const { username, email, password } = req.body;
+
+    try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const sql = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
+        db.query(sql, [username, email, hashedPassword], (err, result) => {
+            if (err) {
+                console.error('회원가입 오류:', err);
+                return res.status(500).json({ error: '회원가입 실패' });
+            }
+            res.json({ message: '회원가입 성공' });
+        });
+    } catch (error) {
+        res.status(500).json({ error: '서버 오류' });
+    }
+});
+
+// 로그인 (Login)
+app.post('/api/login', (req, res) => {
+    const { email, password } = req.body;
+
+    const sql = 'SELECT * FROM users WHERE email = ?';
+    db.query(sql, [email], async (err, results) => {
+        if (err) return res.status(500).json({ error: '서버 오류' });
+        if (results.length === 0) return res.status(401).json({ error: '이메일 또는 비밀번호가 잘못되었습니다.' });
+
+        const user = results[0];
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) return res.status(401).json({ error: '이메일 또는 비밀번호가 잘못되었습니다.' });
+
+        const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.json({ message: '로그인 성공', token });
     });
 });
 
