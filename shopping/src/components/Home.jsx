@@ -41,7 +41,7 @@ export default function Home() {
                             </Card.Body>
                         </Card>
                     ))}
-                    <Link to="/products">
+                    <Link to="/Market">
                         <Button variant="primary" size="sm">
                             더보기
                         </Button>
@@ -59,7 +59,7 @@ export default function Home() {
                             </Card.Body>
                         </Card>
                     ))}
-                    <Link to="/fashion">
+                    <Link to="/FashionInformation">
                         <Button variant="primary" size="sm">
                             더보기
                         </Button>
