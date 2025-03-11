@@ -127,6 +127,18 @@ app.post('/api/login', (req, res) => {
     });
 });
 
+// 공지사항 데이터 가져오기 API
+app.get('/api/notices', (req, res) => {
+    const sql = 'SELECT * FROM notices ORDER BY id DESC';
+    db.query(sql, (err, results) => {
+        if (err) {
+            res.status(500).json({ error: '데이터 가져오기 실패' });
+        } else {
+            res.json(results);
+        }
+    });
+});
+
 // 서버 실행
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 서버 실행 중: http://localhost:${PORT}`));
