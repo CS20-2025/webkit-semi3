@@ -7,7 +7,7 @@ import { FaHeart, FaComment } from 'react-icons/fa';
 import { BsEye } from 'react-icons/bs';
 import axios from 'axios';
 
-export default function FashionInformation() {
+export default function FashionInformation({ onPostUpdate }) {
     //리액트가 실행될때 백엔드에서 데이터를 가져오기 ------
     const [gods, setGoods] = useState([]);
     const [displayedGoods, setDisplayedGoods] = useState([]); // 검색 결과 반영할 상태
@@ -76,6 +76,7 @@ export default function FashionInformation() {
             const res = await axios.post('http://localhost:5000/api/posts', newPost);
             setGoods([...gods, res.data]);
             setDisplayedGoods([...displayedGoods, res.data]);
+            onPostUpdate(); // 게시물이 추가된 후 트리거 업데이트
         } catch (error) {
             console.error('게시글 등록 중 오류 발생:', error);
         }
