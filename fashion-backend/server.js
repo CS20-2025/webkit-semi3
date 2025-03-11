@@ -127,6 +127,33 @@ app.post('/api/login', (req, res) => {
     });
 });
 
+// 공지사항 데이터 가져오기 API
+app.get('/api/notices', (req, res) => {
+    const sql = 'SELECT * FROM notices ORDER BY id DESC';
+    db.query(sql, (err, results) => {
+        if (err) {
+            res.status(500).json({ error: '데이터 가져오기 실패' });
+        } else {
+            res.json(results);
+        }
+    });
+});
+
+// 공지사항 상세 조회 API
+app.get('/api/notices/:id', (req, res) => {
+    const { id } = req.params;
+    const sql = 'SELECT * FROM notices WHERE id = ?';
+    db.query(sql, [id], (err, results) => {
+        if (err) {
+            res.status(500).json({ error: '데이터 조회 실패' });
+        } else if (results.length === 0) {
+            res.status(404).json({ error: '공지사항 없음' });
+        } else {
+            res.json(results[0]);
+        }
+    });
+});
+
 // 서버 실행
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 서버 실행 중: http://localhost:${PORT}`));

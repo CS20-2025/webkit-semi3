@@ -18,6 +18,7 @@ import Home from './components/Home';
 
 // 공지사항 컴포넌트
 import GongJi from './components/Gongji/GongJi';
+import NoticeDetail from './components/Gongji/NoticeDetail';
 
 // 로그인, 회원가입
 import Register from './components/user/Register';
@@ -44,6 +45,7 @@ function App() {
 
                                     {/* 공지 사항 */}
                                     <Route path="/GongJi" element={<GongJi />} />
+                                    <Route path="/notice/:id" element={<NoticeDetail></NoticeDetail>}></Route>
 
                                     {/* 마켓 */}
                                     <Route path="/market" element={<ProductList />} />
