@@ -3,7 +3,7 @@ import Header from './Header';
 import MainLeft from './Text/MainLeft';
 import MainRight from './Text/MainRight';
 
-const Home = () => {
+export default function Home() {
     return (
         <div id="wrap" className="flex flex-col min-h-screen">
             {/* Main Content */}
@@ -20,6 +20,4 @@ const Home = () => {
             <footer className="bg-gray-800 text-white p-4 text-center mt-auto">Copyright © 2025</footer>
         </div>
     );
-};
-
-export default Home;
+}

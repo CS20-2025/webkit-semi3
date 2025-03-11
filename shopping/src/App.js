@@ -9,8 +9,8 @@ import { CartProvider } from './components/market/CartContext';
 import Checkout from './components/market/Checkout';
 
 // 패션 정보 컴포넌트
-import './components/FashionInformaiton/Fashion.css';
-import FashionInformation from './components/FashionInformaiton/FashionInformation';
+import './components/FashionInformation/Fashion.css';
+import FashionInformation from './components/FashionInformation/FashionInformation';
 
 // 공통 컴포넌트
 import Header from './components/Header';
