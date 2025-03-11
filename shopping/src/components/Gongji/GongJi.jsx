@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function GongJi() {
     const [notices, setNotices] = useState([]);
+    const navigate = useNavigate(); //페이지 이동을 위함
 
     // 백엔드 API에서 데이터 가져오기
     useEffect(() => {
@@ -31,7 +33,11 @@ export default function GongJi() {
                 </thead>
                 <tbody>
                     {notices.map((notice, index) => (
-                        <tr key={notice.id}>
+                        <tr
+                            key={notice.id} //해당 공지사항 게시글의 id
+                            onClick={() => navigate(`/notice/${notice.id}`)} //클릭 시 상세 페이지 이동
+                            style={{ cursor: 'pointer' }} //마우스 오버 시 클릭 가능하게 표시
+                        >
                             <td>{index + 1}</td>
                             <td>{notice.title}</td>
                             <td>{notice.views}</td>
